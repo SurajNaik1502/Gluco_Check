@@ -1,0 +1,118 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Font Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header Section */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+header h1 {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    margin-bottom: 10px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Section */
+main {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+main h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.meter {
+    position: relative;
+    width: 300px;
+    height: 50px;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+}
+
+.level {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    position: absolute; /* Use absolute positioning */
+    width: 33.33%; /* Each level takes one-third */
+}
+
+.low {
+    background-color: orange; /* Red */
+    left: 0; /* Position at the start */
+}
+
+.medium {
+    background-color: green; /* Yellow */
+    left: 33.33%; /* Position in the middle */
+}
+
+.high {
+    background-color: red; /* Green */
+    left: 66.66%; /* Position at the end */
+}
+
+.indicator {
+    position: absolute;
+    height: 100%;
+    width: 33.33%;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: transform 0.5s ease;
+}
+
+/* Footer Section */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+    width: 100%;
+}
