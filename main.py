@@ -1,22 +1,36 @@
 import serial
 from flask import Flask, jsonify
+import time
 
-# STM32 ke saath serial connection setup karo (adjust COM port and baud rate accordingly)
-ser = serial.Serial('/dev/ttyUSB0', 115200)  # Use appropriate port
+app = Flask(_name_)
 
-# ser = serial.Serial('/dev/ttyACM0', 115200)  # Mac/Linux ke liye
-# ser = serial.Serial('COM3', 115200)  # Windows ke liye 
-# ser = serial.Serial('COM4', 115200)  # Windows use ke liye
+# Initialize serial connection
+def initialize_serial(port='COM9', baudrate=115200, timeout=1):
+    try:
+        ser = serial.Serial(port, baudrate, timeout=timeout)
+        time.sleep(2)  # Wait for the connection to initialize
+        print(f"Serial connection established on {port}.")
+        return ser
+    except serial.SerialException as e:
+        print(f"Error connecting to serial port {port}: {e}")
+        return None
 
-app = Flask(__name__)
+# Initialize serial connection (adjust 'COM9' as needed)
+ser = initialize_serial('COM9')
 
 @app.route('/glucose', methods=['GET'])
 def get_glucose_level():
-    if ser.in_waiting > 0:
-        glucose_data = ser.readline().decode('utf-8').strip()
-        return jsonify({'glucose_level': glucose_data})
-    return jsonify({'error': 'No data available'}), 404
+    if ser and ser.is_open:
+        try:
+            if ser.in_waiting > 0:
+                glucose_data = ser.readline().decode('utf-8').strip()
+                return jsonify({'glucose_level': glucose_data})
+            else:
+                return jsonify({'error': 'No data available'}), 404
+        except Exception as e:
+            return jsonify({'error': f'Failed to read data: {str(e)}'}), 500
+    else:
+        return jsonify({'error': 'Serial port not connected'}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
-
+if _name_ == '_main_':
+    app.run(debug=True, port=5000, use_reloader=False)

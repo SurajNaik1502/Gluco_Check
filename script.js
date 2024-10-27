@@ -11,7 +11,8 @@ function updateMeter(level) {
 }
 
 setInterval(function() {
-    fetch('http://localhost:5000/glucose')
+    // fetch('http://localhost:5000/glucose')
+    fetch('http://127.0.0.1:5000/glucose')
         .then(response => response.json())
         .then(data => {
             var glucoseLevel = parseFloat(data.glucose_level);
@@ -30,3 +31,4 @@ setInterval(function() {
             console.error('Error fetching glucose level:', err);
         });
 }, 1000);  // Update every 1 second
+
