@@ -11,7 +11,6 @@ function updateMeter(level) {
 }
 
 setInterval(function() {
-    // fetch('http://localhost:5000/glucose')
     fetch('http://127.0.0.1:5000/glucose')
         .then(response => response.json())
         .then(data => {

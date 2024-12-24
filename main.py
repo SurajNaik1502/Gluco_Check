@@ -1,8 +1,10 @@
 import serial
 from flask import Flask, jsonify
 import time
+from flask_cors import CORS
 
 app = Flask(_name_)
+CORS(app)
 
 # Initialize serial connection
 def initialize_serial(port='COM9', baudrate=115200, timeout=1):
