@@ -14,7 +14,7 @@
 
     <div class="inner">
         <div class="left">
-            <img src="img.png" alt="">
+            <img src="./glucometer.png" alt="">
         </div>
         <div class="right">
             <p>Current blood glucose monitoring methods, like finger-prick tests, are invasive, uncomfortable, and costly, leading to poor user compliance. This project develops a non-invasive system using the STM32 microcontroller, MQ135 and MQ3 sensors to measure breath acetone, converting it to glucose levels. Our custom website alerts users to high or low glucose levels, offering a more user-friendly alternative to traditional methods.
@@ -22,9 +22,10 @@
         </div>
     </div>
 
-    <main></main>
+    <main>
         <section class="intro">
-            <h2>Results</h2>
+            <div class="Results">
+
             <div class="meter">
                 <div class="level low">Low</div>
                 <div class="level medium">Normal</div>
@@ -32,6 +33,7 @@
                 <div class="indicator"></div>
             </div>
             <div id="output">Waiting for data...</div>
+            </div>
         </section>
 
         <section class="services">
@@ -40,6 +42,33 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        function updateMeter(level) {
+            const indicator = document.querySelector('.indicator');
+
+            if (level === 'low') {
+                indicator.style.transform = 'translateX(0%)';
+            } else if (level === 'medium') {
+                indicator.style.transform = 'translateX(100%)';
+            } else if (level === 'high') {
+                indicator.style.transform = 'translateX(200%)';
+            }
+        }
+
+        // Simulating STM32 output
+        setInterval(function() {
+            var stm32Data = Math.floor(Math.random() * 100); // Simulate glucose level
+            document.getElementById('output').innerText = "Your Glucose Levels are: " + stm32Data;
+
+            // Update the meter based on glucose level
+            if (stm32Data < 40) {
+                updateMeter('low');
+            } else if (stm32Data >= 40 && stm32Data <= 70) {
+                updateMeter('medium');
+            } else {
+                updateMeter('high');
+            }
+        }, 5000); // Update every 1 second
+    </script>
 </body>
 </html>

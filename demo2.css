@@ -41,7 +41,7 @@
     float: right;
     height: 250px;
     width: 700px;
-    text-align: justify;    
+    text-align: center;
     margin-right: 200px;
     margin-top: 80px;
     font-size: 20px;
@@ -69,6 +69,9 @@ main h2 {
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin: 20px auto;
+    margin-top: 70px;
+    align-items: center;
+    margin-left: 600px;
 }
 
 .level {
